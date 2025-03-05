@@ -1,29 +1,17 @@
-// const mongoose= require('mongoose');
-// const mongoURI="mongodb://localhost:27017/ina"
-// const connectToMongo =async()=>{
-//         await mongoose.connect(mongoURI, {
-//         // useNewUrlParser: true,
-//         // useUnifiedTopology: true 
-//     });
-//     console.log("mongo Connect")
-// }
-// module.exports=connectToMongo;       
-
-
 const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables
+require('dotenv').config();
 
-const mongoURI = process.env.MONGO_URI; // Use MongoDB URI from Railway
+const mongoURI = process.env.MONGO_URI; // Ensure this is correctly set
 
 const connectToMongo = async () => {
     try {
         await mongoose.connect(mongoURI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
+            useNewUrlParser: true, // No longer needed, but safe to keep
+            useUnifiedTopology: true, // No longer needed, but safe to keep
         });
-        console.log(" MongoDB Connected Successfully");
+        console.log("✅ Connected to MongoDB successfully!");
     } catch (error) {
-        console.error(" MongoDB Connection Error:", error);
+        console.error("❌ MongoDB Connection Error:", error);
         process.exit(1);
     }
 };
