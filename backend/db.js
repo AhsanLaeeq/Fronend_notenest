@@ -9,10 +9,11 @@
 // }
 // module.exports=connectToMongo;       
 
-require("dotenv").config();
-const mongoose = require("mongoose");
 
-const mongoURI = process.env.MONGO_URI;  // Get MongoDB Atlas URI from .env
+const mongoose = require('mongoose');
+require('dotenv').config(); // Load environment variables
+
+const mongoURI = process.env.MONGO_URI; // Use MongoDB URI from Railway
 
 const connectToMongo = async () => {
     try {
@@ -20,9 +21,9 @@ const connectToMongo = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        console.log("MongoDB Connected Successfully");
+        console.log(" MongoDB Connected Successfully");
     } catch (error) {
-        console.error("MongoDB Connection Failed:", error);
+        console.error(" MongoDB Connection Error:", error);
         process.exit(1);
     }
 };
