@@ -13,26 +13,34 @@ const Signup = (props) => {
     e.preventDefault();
     const { name, email, password } = credentials;
 
-    // API call to create a new user
-    const response = await fetch("https://notenest-production.up.railway.app/api/auth/createuser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
-    });
+    // Log request URL before sending the request
+    console.log("Sending request to:", "https://notenest-production.up.railway.app/api/auth/createuser");
 
-    const json = await response.json();
-    console.log(json);
+    try {
+      // API call to create a new user
+      const response = await fetch("https://notenest-production.up.railway.app/api/auth/createuser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
 
-    // If signup is successful, store token and redirect
-    if (json.success) {
-      localStorage.setItem("token", json.authtoken);
-      navigate("/"); // Redirect to home page
-      props.showAlert("Account Created Successfully", "success");
-    } else {
-      // Show alert for invalid credentials
-      props.showAlert("Invalid Credentials", "danger");
+      const json = await response.json();
+      console.log("Response received:", json);
+
+      // If signup is successful, store token and redirect
+      if (json.success) {
+        localStorage.setItem("token", json.authtoken);
+        navigate("/"); // Redirect to home page
+        props.showAlert("Account Created Successfully", "success");
+      } else {
+        // Show alert for invalid credentials
+        props.showAlert(json.error || "Invalid Credentials", "danger");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      props.showAlert("Something went wrong! Please try again later.", "danger");
     }
   };
 
