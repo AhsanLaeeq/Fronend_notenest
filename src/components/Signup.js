@@ -14,11 +14,11 @@ const Signup = (props) => {
     const { name, email, password } = credentials;
 
     // Log request URL before sending the request
-    console.log("Sending request to:", "https://backendnest-production-a25a.up.railway.app/api/auth/createuser");
+    console.log("Sending request to:", "https://backendnest-production-bb92.up.railway.app/api/auth/createuser");
 
     try {
       // API call to create a new user
-      const response = await fetch("https://backendnest-production-a25a.up.railway.app/api/auth/createuser", {
+      const response = await fetch("https://backendnest-production-bb92.up.railway.app/api/auth/createuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

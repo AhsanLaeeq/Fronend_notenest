@@ -78,7 +78,7 @@ const Login = (props) => {
     e.preventDefault();
 
     // API call to authenticate user
-    const response = await fetch("https://backendnest-production-a25a.up.railway.app/api/auth/login", {
+    const response = await fetch("https://backendnest-production-bb92.up.railway.app/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

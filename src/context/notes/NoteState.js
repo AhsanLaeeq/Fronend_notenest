@@ -2,7 +2,7 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "https://backendnest-production-a25a.up.railway.app";
+  const host = "https://backendnest-production-bb92.up.railway.app";
   const [notes, setNotes] = useState([]);
 
   // Fetch All Notes
