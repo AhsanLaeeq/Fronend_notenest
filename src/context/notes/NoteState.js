@@ -24,23 +24,47 @@ const NoteState = (props) => {
   };
 
   // Add a Note
+  // const addNote = async (title, description, tag) => {
+  //   try {
+      
+  //     const response = await fetch(`${host}/api/notes/addnote`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "auth-token": localStorage.getItem("token"),
+  //       },
+  //       body: JSON.stringify({ title, description, tag }),
+  //     });
+
+  //     const note = await response.json();
+  //     setNotes([...notes, note]);
+  //   } catch (error) {
+  //     console.error("Error adding note:", error);
+  //   }
+  // };
   const addNote = async (title, description, tag) => {
     try {
+      console.log("Auth Token before request:", localStorage.getItem("token"));
+      console.log("Sending request to:", `${host}/api/notes/addnote`);
+  
       const response = await fetch(`${host}/api/notes/addnote`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
+          "auth-token": localStorage.getItem("token"),  // Check if this is null
         },
         body: JSON.stringify({ title, description, tag }),
       });
-
+  
       const note = await response.json();
-      setNotes([...notes, note]);
+      console.log("Response received:", note);  // Log response
+  
+      setNotes([...notes, note]);  // Update state with new note
     } catch (error) {
       console.error("Error adding note:", error);
     }
   };
+  
 
   // Delete a Note
   const deleteNote = async (id) => {
