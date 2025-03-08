@@ -47,12 +47,13 @@ function App() {
   return (
     <>
     <NoteState>
-    <Router>
+    <Router basename="/Frontend_notenest">
+   
 
     <Navbar/>
     <Alert alert={alert}/>
     <Routes>
-          <Route path="/Home"element= {<Home showAlert={showAlert}/>}/>
+          <Route path="/"element= {<Home showAlert={showAlert}/>}/>
           <Route  path="/about"element={<About/>}/>
           <Route path="/login"element= {<Login  showAlert={showAlert}/>}/>
           <Route  path="/signup"element={<Signup  showAlert={showAlert}/>}/>
