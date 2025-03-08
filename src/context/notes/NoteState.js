@@ -23,49 +23,26 @@ const NoteState = (props) => {
     }
   };
 
-  // // Add a Note
-  // const addNote = async (title, description, tag) => {
-  //   try {
-  //     const response = await fetch(`${host}/api/notes/addnote`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "auth-token": localStorage.getItem("token"),
-  //       },
-        
-  //       body: JSON.stringify({ title, description, tag }),
-  //     });
-
-  //     const note = await response.json();
-  //     setNotes([...notes, note]);
-  //   } catch (error) {
-  //     console.error("Error adding note:", error);
-  //   }
-  // };
-
+  // Add a Note
   const addNote = async (title, description, tag) => {
     try {
       const response = await fetch(`${host}/api/notes/addnote`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjdjYjQxYjBjMzRjNDZiZjNjNGViZTUxIn0sImlhdCI6MTc0MTM3Mzg3Mn0.h4phXv10FkiBezjKTNmlmpVrgTNVnz1DQhS8gkoqmYA", // Hardcoded token for testing
+          "auth-token": localStorage.getItem("token"),
         },
+        
         body: JSON.stringify({ title, description, tag }),
       });
-  
+
       const note = await response.json();
-      
-      // Make sure the response is valid before adding it to the state
-      if (response.ok) {
-        setNotes([...notes, note]);
-      } else {
-        console.error("Failed to add note:", note);
-      }
+      setNotes([...notes, note]);
     } catch (error) {
       console.error("Error adding note:", error);
     }
   };
+
   
 
 
